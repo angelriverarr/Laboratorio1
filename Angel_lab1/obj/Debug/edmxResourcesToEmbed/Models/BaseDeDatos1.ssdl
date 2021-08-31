@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaseDeDatosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BaseDeDatos.dbo.TblNotasEstudiante' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="TblNotasEstudiante">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Laboratorio_1" />
+      <PropertyRef Name="Laboratorio_2" />
+      <PropertyRef Name="Laboratorio_3" />
+      <PropertyRef Name="Parcial_1" />
+      <PropertyRef Name="Parcial_2" />
+      <PropertyRef Name="Parcial_3" />
+    </Key>
+    <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Laboratorio_1" Type="float" Nullable="false" />
+    <Property Name="Laboratorio_2" Type="float" Nullable="false" />
+    <Property Name="Laboratorio_3" Type="float" Nullable="false" />
+    <Property Name="Parcial_1" Type="float" Nullable="false" />
+    <Property Name="Parcial_2" Type="float" Nullable="false" />
+    <Property Name="Parcial_3" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BaseDeDatosModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblNotasEstudiante" EntityType="Self.TblNotasEstudiante" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TblNotasEstudiante].[Nombre] AS [Nombre], 
+    [TblNotasEstudiante].[Laboratorio_1] AS [Laboratorio_1], 
+    [TblNotasEstudiante].[Laboratorio_2] AS [Laboratorio_2], 
+    [TblNotasEstudiante].[Laboratorio_3] AS [Laboratorio_3], 
+    [TblNotasEstudiante].[Parcial_1] AS [Parcial_1], 
+    [TblNotasEstudiante].[Parcial_2] AS [Parcial_2], 
+    [TblNotasEstudiante].[Parcial_3] AS [Parcial_3]
+    FROM [dbo].[TblNotasEstudiante] AS [TblNotasEstudiante]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
